@@ -1,0 +1,35 @@
+<% if not (@name.nil? or City.all[@name.to_sym].nil?) %>
+	<% c = City.all[@name.to_sym] %>
+	<h1> <%= c.name %></h1>
+	<p>
+		Population: <%=  c.population%>
+	<p>
+		Landmark: <%= c.landmark%>
+	<p>
+
+	<p>
+		Temperature: <%= (9 / 5) * (@weather[:temperature] - 273) + 32%>
+	<p>
+<% elsif City.all.length == 0 %>
+
+	<h1> No cities to display! <h1>
+
+	<h1> Create a new city by calling /cities/new <h1>
+
+<% else %>
+	<% City.all.each do |key, array| %>
+	<% c = City.all[key.to_sym] %>
+	<h1> <%= c.name %></h1>
+	<p>
+		Population: <%=  c.population%>
+	<p>
+		Landmark: <%= c.landmark%>
+	<p>
+
+	<p>
+		Temperature: <%= (9 / 5) * (c.weather[:temperature] - 273) + 32%>
+	<p>
+
+	<% end %>
+
+<% end %>

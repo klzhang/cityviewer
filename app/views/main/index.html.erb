@@ -1,0 +1,16 @@
+<% City.all.each do |key, array| %>
+<% c = City.all[key.to_sym] %>
+<% if not c.nil? %>
+	<h1> <%= c.name %></h1>
+	<p>
+		It's <%= (9 / 5) * (c.weather[:temperature] - 273) + 32 %>°F
+		and it looks like <%= c.weather[:description] %>
+	</p>
+<% end %>
+<% end %>
+
+
+<%= form_with local: true, method: "get" do |f| %>
+<%= f.text_field :city %>
+<%= f.submit "Submit" %>
+<% end %>
